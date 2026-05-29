@@ -1,6 +1,7 @@
 package com.example.integrate;
 
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -11,21 +12,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // 1. Create the container to display your website
+        // 1. Initialize the modern web view platform container
         WebView myWebView = new WebView(this);
 
-        // 2. Prevent the links from opening outside the app in Chrome
+        // 2. Prevent redirect links from escaping out into Google Chrome
         myWebView.setWebViewClient(new WebViewClient());
 
-        // 3. Enable JavaScript so your Base44 interactive elements work
+        // 3. Configure advanced web features required by modern web platforms
         WebSettings webSettings = myWebView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setDomStorageEnabled(true); // Helps layout elements load cleanly
+        webSettings.setJavaScriptEnabled(true);        // Runs interactive scripts
+        webSettings.setDomStorageEnabled(true);         // Loads web application frames
+        webSettings.setDatabaseEnabled(true);           // Keeps product data active
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
 
-        // 4. Point it directly to your live Base44 web app
-        myWebView.loadUrl("https://base44.app");
+        // 4. Force premium hardware graphics rendering speeds
+        myWebView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
 
-        // 5. Display it on the phone screen
+        // 5. Direct the browser container straight to your personal application storefront
+        myWebView.loadUrl("https://style-nest-shop.base44.app/");
+
+        // 6. Project the storefront clean onto the smartphone screen
         setContentView(myWebView);
     }
 }
